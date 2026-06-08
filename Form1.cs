@@ -305,46 +305,6 @@ namespace ExamenFinal_SistemadeGestióndePedidosenunRestaurante
             tabControl1.SelectedTab = tabListado;
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            string criterio = comboBoxBusqueda.Text;
-            string texto = textBoxBusqueda.Text.Trim().ToLower();
-
-            if (texto == "")
-            {
-                MessageBox.Show("Ingrese un texto para buscar.");
-                return;
-            }
-
-            List<Producto> resultados = new List<Producto>();
-
-            if (criterio == "Código")
-            {
-                resultados = productos
-                    .Where(p => p.Codigo.ToLower().Contains(texto))
-                    .ToList();
-            }
-            else if (criterio == "Nombre")
-            {
-                resultados = productos
-                    .Where(p => p.Nombre.ToLower().Contains(texto))
-                    .ToList();
-            }
-            else if (criterio == "Tipo de producto")
-            {
-                resultados = productos
-                    .Where(p => p.TipoProducto.ToLower().Contains(texto))
-                    .ToList();
-            }
-
-            MostrarResultadosBusqueda(resultados);
-
-            if (resultados.Count == 0)
-            {
-                MessageBox.Show("No se encontraron productos.");
-            }
-        }
-
         private void MostrarResultadosBusqueda(List<Producto> lista)
         {
             dataGridViewBuscar.DataSource = null;
@@ -392,6 +352,46 @@ namespace ExamenFinal_SistemadeGestióndePedidosenunRestaurante
             textBoxCodigo.Focus();
 
             tabControl1.SelectedTab = tabRegistro;
+        }
+
+        private void buttonBuscar_Click(object sender, EventArgs e)
+        {
+            string criterio = comboBoxBusqueda.Text;
+            string texto = textBoxBusqueda.Text.Trim().ToLower();
+
+            if (texto == "")
+            {
+                MessageBox.Show("Ingrese un texto para buscar.");
+                return;
+            }
+
+            List<Producto> resultados = new List<Producto>();
+
+            if (criterio == "Código")
+            {
+                resultados = productos
+                    .Where(p => p.Codigo.ToLower().Contains(texto))
+                    .ToList();
+            }
+            else if (criterio == "Nombre")
+            {
+                resultados = productos
+                    .Where(p => p.Nombre.ToLower().Contains(texto))
+                    .ToList();
+            }
+            else if (criterio == "Tipo de producto")
+            {
+                resultados = productos
+                    .Where(p => p.TipoProducto.ToLower().Contains(texto))
+                    .ToList();
+            }
+
+            MostrarResultadosBusqueda(resultados);
+
+            if (resultados.Count == 0)
+            {
+                MessageBox.Show("No se encontraron productos.");
+            }
         }
     }
 }
