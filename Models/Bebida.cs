@@ -13,11 +13,16 @@ namespace ExamenFinal_SistemadeGestióndePedidosenunRestaurante.Models
 
         public int VolumenMl
         {
-            get => volumenMl;
+            get
+            {
+                return volumenMl;
+            }
             set
             {
                 if (value <= 0)
+                {
                     throw new ArgumentException("El volumen debe ser mayor que 0.");
+                }
 
                 volumenMl = value;
             }
@@ -25,17 +30,28 @@ namespace ExamenFinal_SistemadeGestióndePedidosenunRestaurante.Models
 
         public string TipoBebida
         {
-            get => tipoBebida;
+            get
+            {
+                return tipoBebida;
+            }
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
+                {
                     throw new ArgumentException("El tipo de bebida no puede estar vacío.");
+                }
 
                 tipoBebida = value.Trim();
             }
         }
 
-        public override string TipoProducto => "Bebida";
+        public override string TipoProducto
+        {
+            get
+            {
+                return "Bebida";
+            }
+        }
 
         public Bebida(string codigo, string nombre, decimal precioBase, int volumenMl, string tipoBebida)
             : base(codigo, nombre, precioBase)
@@ -48,7 +64,9 @@ namespace ExamenFinal_SistemadeGestióndePedidosenunRestaurante.Models
 
         public override string ObtenerDetalle()
         {
-            return $"{TipoBebida} - {VolumenMl} ml";
+            return TipoBebida + " - " + VolumenMl + " ml";
         }
     }
+
 }
+

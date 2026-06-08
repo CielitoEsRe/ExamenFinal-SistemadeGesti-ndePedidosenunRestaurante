@@ -13,11 +13,16 @@ namespace ExamenFinal_SistemadeGestióndePedidosenunRestaurante.Models
 
         public string ContieneAzucar
         {
-            get => contieneAzucar;
+            get
+            {
+                return contieneAzucar;
+            }
             set
             {
                 if (value != "Sí" && value != "No")
+                {
                     throw new ArgumentException("Debe indicar si contiene azúcar: Sí o No.");
+                }
 
                 contieneAzucar = value;
             }
@@ -25,17 +30,28 @@ namespace ExamenFinal_SistemadeGestióndePedidosenunRestaurante.Models
 
         public string Porcion
         {
-            get => porcion;
+            get
+            {
+                return porcion;
+            }
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
+                {
                     throw new ArgumentException("La porción no puede estar vacía.");
+                }
 
                 porcion = value.Trim();
             }
         }
 
-        public override string TipoProducto => "Postre";
+        public override string TipoProducto
+        {
+            get
+            {
+                return "Postre";
+            }
+        }
 
         public Postre(
             string codigo,
@@ -55,8 +71,7 @@ namespace ExamenFinal_SistemadeGestióndePedidosenunRestaurante.Models
 
         public override string ObtenerDetalle()
         {
-            return $"Azúcar: {ContieneAzucar} - Porción: {Porcion}";
+            return "Azúcar: " + ContieneAzucar + " - Porción: " + Porcion;
         }
     }
-
 }

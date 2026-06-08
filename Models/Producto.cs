@@ -14,43 +14,62 @@ namespace ExamenFinal_SistemadeGestióndePedidosenunRestaurante.Models
 
         public string Codigo
         {
-            get => codigo;
+            get
+            {
+                return codigo;
+            }
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
+                {
                     throw new ArgumentException("El código no puede estar vacío.");
+                }
+
                 codigo = value.Trim();
             }
         }
 
         public string Nombre
         {
-            get => nombre;
+            get
+            {
+                return nombre;
+            }
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
+                {
                     throw new ArgumentException("El nombre no puede estar vacío.");
+                }
+
                 nombre = value.Trim();
             }
         }
 
         public decimal PrecioBase
         {
-            get => precioBase;
+            get
+            {
+                return precioBase;
+            }
             set
             {
                 if (value <= 0)
+                {
                     throw new ArgumentException("El precio debe ser mayor que 0.");
+                }
+
                 precioBase = value;
             }
         }
 
         public abstract string TipoProducto { get; }
 
-        protected Producto(string codigo, string nombre, decimal precioBase)
+        public Producto(string codigo, string nombre, decimal precioBase)
         {
             this.codigo = "";
             this.nombre = "";
+
             Codigo = codigo;
             Nombre = nombre;
             PrecioBase = precioBase;

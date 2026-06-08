@@ -13,11 +13,16 @@ namespace ExamenFinal_SistemadeGestióndePedidosenunRestaurante.Models
 
         public string TipoCarne
         {
-            get => tipoCarne;
+            get
+            {
+                return tipoCarne;
+            }
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
+                {
                     throw new ArgumentException("El tipo de carne no puede estar vacío.");
+                }
 
                 tipoCarne = value.Trim();
             }
@@ -25,17 +30,28 @@ namespace ExamenFinal_SistemadeGestióndePedidosenunRestaurante.Models
 
         public string Acompanamiento
         {
-            get => acompanamiento;
+            get
+            {
+                return acompanamiento;
+            }
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
+                {
                     throw new ArgumentException("El acompañamiento no puede estar vacío.");
+                }
 
                 acompanamiento = value.Trim();
             }
         }
 
-        public override string TipoProducto => "PlatoFuerte";
+        public override string TipoProducto
+        {
+            get
+            {
+                return "PlatoFuerte";
+            }
+        }
 
         public PlatoFuerte(
             string codigo,
@@ -55,7 +71,7 @@ namespace ExamenFinal_SistemadeGestióndePedidosenunRestaurante.Models
 
         public override string ObtenerDetalle()
         {
-            return $"Carne: {TipoCarne} - Acompañamiento: {Acompanamiento}";
+            return "Carne: " + TipoCarne + " - Acompañamiento: " + Acompanamiento;
         }
     }
 }
